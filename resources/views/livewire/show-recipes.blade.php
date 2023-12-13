@@ -25,10 +25,10 @@
 					<p>Preparation time: {{ $recipe->prep_time }}</p>
 					<p>Cooking time: {{ $recipe->cooking_time }}</p>
 				</li>
-				<div class="flex-1 text-sm">
+				<div class="inline-flex-1 min-w-max text-sm">
 					<div
 						wire:click="$dispatch('openModal', { component: 'recipe-modal', arguments: {recipe: {{ $recipe }}} })"
-						class="float-right flex cursor-pointer items-center">
+						class="flex cursor-pointer items-center justify-end">
 						<span class="mr-2">Edit recipe</span>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 							stroke="currentColor" class="h-6 w-6">
@@ -39,7 +39,7 @@
 					</div>
 					<div wire:click="delete({{ $recipe->id }})"
 						wire:confirm="Are you sure you want to delete this recipe?"
-						class="float-right flex cursor-pointer text-red-500 hover:text-red-700">
+						class="flex cursor-pointer justify-end text-red-500 hover:text-red-700">
 						<span class="mr-2">Delete recipe</span>
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 							stroke="currentColor" class="h-6 w-6">
