@@ -6,10 +6,10 @@
 				<tr class="mb-2 h-44 align-top">
 					<td class="relative overflow-hidden border-b">
 						<div class="max-h-7">
-							<div class="text-xl">{{ $meal }}</div>
+							<div class="mb-3 text-xl">{{ $meal }}</div>
 							@foreach ($menu as $item)
 								@if ($item->day == $date && $item->meal == $meal)
-									<div class="flex items-center text-sm">
+									<div class="mb-2 flex items-center text-sm">
 										<span>{{ $item->recipe->name }}</span>
 										<div wire:click="deleteMenuItem('{{ $meal }}',{{ $item->recipe->id }})"
 											wire:confirm="Are you sure you want to delete this recipe?"

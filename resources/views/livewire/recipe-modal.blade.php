@@ -23,9 +23,6 @@
 		</div>
 
 		<div class="flex justify-end">
-			@if (!!$recipe)
-				<button class="mr-4 text-red-500" x-on:click="if (confirm('Are you sure?')) $wire.delete()">Delete recipe</button>
-			@endif
 			<x-primary-button type="submit">Save</x-primary-button>
 		</div>
 
