@@ -19,14 +19,4 @@
 			@livewire("show-recipes")
 		</div>
 	</div>
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			Livewire.on('recipeDragStart', function(recipe_id) {
-				Livewire.dispatch('recipeDropped', {
-					recipe_id: recipe_id,
-					dropTarget: 'drop_target_id'
-				});
-			});
-		});
-	</script>
 </x-app-layout>
