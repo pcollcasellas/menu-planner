@@ -36,11 +36,11 @@ new class extends Component {
 
 				<!-- Navigation Links -->
 				<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-					{{-- <a href="{{ route("dashboard") }}"
-						class="inline-flex items-center border-b-2 border-indigo-400 px-1 pt-1 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out focus:border-indigo-700 focus:outline-none">{{ __("Dashboard") }}</a> --}}
-					<x-nav-link :href="route("dashboard")" :active="request()->routeIs("dashboard")">
+					<a href="{{ route("dashboard") }}"
+						class="inline-flex items-center border-b-2 border-indigo-400 px-1 pt-1 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out focus:border-indigo-700 focus:outline-none">{{ __("Dashboard") }}</a>
+					{{-- <x-nav-link :href="route("dashboard")" :active="request()->routeIs("dashboard")">
 						{{ __("Dashboard") }}
-					</x-nav-link>
+					</x-nav-link> --}}
 				</div>
 			</div>
 
