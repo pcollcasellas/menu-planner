@@ -8,7 +8,7 @@ use LivewireUI\Modal\ModalComponent;
 class RecipeModal extends ModalComponent
 {
     public ?Recipe $recipe = null;
-    public forms\RecipeForm $form;
+    public Forms\RecipeForm $form;
 
     public function mount(Recipe $recipe = null): void
     {
