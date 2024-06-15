@@ -19,4 +19,9 @@ class Recipe extends Model
     {
         return $this->hasMany(MenuItem::class);
     }
+
+    public function menu_template_items()
+    {
+        return $this->hasMany(MenuTemplateItem::class);
+    }
 }
