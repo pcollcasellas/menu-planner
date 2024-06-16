@@ -1,4 +1,5 @@
 <div>
+    <h2 class="mb-3 border-b-4 text-xl font-bold">{{ __(ucfirst($day)) }}</h2>
     <table class="w-full table-fixed">
         <tbody>
             @foreach ($meals as $meal)
