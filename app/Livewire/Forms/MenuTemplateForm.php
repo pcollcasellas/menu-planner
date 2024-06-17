@@ -23,15 +23,17 @@ class MenuTemplateForm extends Form
 
     public function save()
     {
-        $this->user_id = Auth::user()->id;
+        $this->user_id = Auth::id(); // Use the shorthand Auth::id() for getting the authenticated user's ID
         $this->validate();
 
-        if (!$this->menuTemplate) {
-            MenuTemplate::create($this->only(['user_id', 'title']));
-        } else {
-            $this->menuTemplate->update($this->only(['user_id', 'title']));
-        }
+        $data = $this->only(['user_id', 'title']);
+
+        $menuTemplate = $this->menuTemplate
+            ? tap($this->menuTemplate)->update($data)
+            : MenuTemplate::create($data);
+
         $this->reset();
+        return $menuTemplate->id;
     }
 
     public function rules()

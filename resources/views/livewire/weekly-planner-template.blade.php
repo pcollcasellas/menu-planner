@@ -1,11 +1,10 @@
 <div>
     <div class="mb-5 flex justify-between">
         @if( count($templates) > 0)
-        <select class="select max-w-xs">
-            {{$templates}} ??
+        <select wire:model.live="selectedTemplateId"class="select max-w-xs">
             @foreach ($templates as $template)
-            <option value="{{ $template->id }}" wire:click="setTemplate({{ $template->id }})">{{$template->title}}
-            </option>
+                <option value="{{ $template->id }}">{{$template->title}}
+                </option>
             @endforeach
         </select>
         @endif
@@ -25,10 +24,11 @@
         @if (count($templates)>0)
             @foreach ($days as $day)
             <div class="w-1/7">
-                @livewire("daily-planner-template", ["day" => $day, "menuTemplateId" => $selectedTemplate->id], key($day))
+                <livewire:daily-planner-template day="{{$day}}" menuTemplateId="{{$selectedTemplateId}}" key="{{ now() }}" />
             </div>
             @endforeach
         @else No templates
         @endif
     </div>
 </div>
+

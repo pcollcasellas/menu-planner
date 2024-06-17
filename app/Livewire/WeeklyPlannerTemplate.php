@@ -3,39 +3,35 @@
 namespace App\Livewire;
 
 use App\Models\MenuTemplate;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class WeeklyPlannerTemplate extends Component
 {
-    public $startOfWeek;
-    public $endOfWeek;
     public $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
     public $templates;
-    public $selectedTemplate;
-    public $options = [];
+    public $selectedTemplateId;
+
+
+    protected $listeners = ['refresh-templates' => 'refresh'];
+
+    public function refresh($menuTemplateId)
+    {
+        $this->templates = MenuTemplate::where('user_id', Auth::id())->get();
+        $this->selectedTemplateId = $menuTemplateId;
+    }
+
 
     public function render()
     {
         return view('livewire.weekly-planner-template');
     }
 
-    public function mount($selectedTemplate = null)
+
+    public function mount()
     {
         $this->templates = MenuTemplate::where('user_id', Auth::user()->id)->get();
-        $this->selectedTemplate = MenuTemplate::where('user_id', Auth::user()->id)->first();
-
-        foreach ($this->templates as $template) {
-            $this->options[] = [
-                'title' => $template['title'], // Assuming 'title' is the field you want to display as the option label
-                'id' => $template['id'],
-            ];
-        }
-    }
-
-    public function selectTemplate($templateId)
-    {
-        $this->selectedTemplate = MenuTemplate::find($templateId);
+        $this->selectedTemplateId = MenuTemplate::where('user_id', Auth::user()->id)->first()->id;
     }
 }

@@ -15,6 +15,7 @@
 	<!-- Scripts -->
 	@vite(["resources/css/app.css", "resources/js/app.js"])
 	<script src="{{ asset("js/lang.js") }}" defer></script>
+	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
 	<!-- Styles -->
 	@livewireStyles
@@ -38,10 +39,10 @@
 			{{ $slot }}
 		</main>
 	</div>
-	@livewire("wire-elements-modal")
+	{{-- @livewire("wire-elements-modal") --}}
 	@livewireScripts
-	<wireui:scripts />
-	<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script>
+	{{-- <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script> --}}
+
 
 </body>
 

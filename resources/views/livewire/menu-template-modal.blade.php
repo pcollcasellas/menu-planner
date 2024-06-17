@@ -8,7 +8,5 @@
         <div class="flex justify-end">
             <x-primary-button type="submit">Save</x-primary-button>
         </div>
-
     </form>
-
 </div>
