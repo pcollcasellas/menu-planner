@@ -48,5 +48,11 @@ class WeeklyPlannerTemplate extends Component
         $this->templateTitle = $this->templates->find($this->selectedTemplateId)->title;
     }
 
-    public function deleteTemplate()
+    public function deleteTemplate  ()
+    {
+        $template = MenuTemplate::find($this->selectedTemplateId);
+        $template->delete();
+        $this->templates = MenuTemplate::where('user_id', Auth::user()->id)->get();
+        $this->selectedTemplateId = MenuTemplate::where('user_id', Auth::user()->id)->first()->id;
+    }
 }
