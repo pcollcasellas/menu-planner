@@ -1,12 +1,12 @@
 <div>
-    <h2 class="mb-3 border-b-4 text-xl font-bold">{{ __(ucfirst($day)) }}</h2>
+    <h2 class="mb-3 border-b-4 text-xl font-bold text-center">{{ __(ucfirst($day)) }}</h2>
     <table class="w-full table-fixed">
         <tbody>
             @foreach ($meals as $meal)
             <tr class="mb-2 h-44 align-top">
                 <td class="relative overflow-hidden border-b">
                     <div class="max-h-7">
-                        <div class="mb-3 text-xl">{{ __($meal) }}</div>
+                        <div class="mb-3 text-xl text-center">{{ __($meal) }}</div>
                         @foreach ($menuTemplate as $item)
                         @if ($item->meal == $meal)
                         <div class="mb-2 flex items-center text-sm">

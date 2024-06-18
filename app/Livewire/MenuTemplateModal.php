@@ -25,8 +25,8 @@ class MenuTemplateModal extends ModalComponent
 
     public function save()
     {
-        $menuTempalteId = $this->form->save();
+        $this->form->save();
         $this->closeModal();
-        $this->dispatch('refresh-templates', ['menuTemplateId' => $menuTempalteId]);
+        $this->dispatch('refresh-templates');
     }
 }

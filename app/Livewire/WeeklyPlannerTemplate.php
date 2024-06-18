@@ -12,14 +12,14 @@ class WeeklyPlannerTemplate extends Component
     public $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
     public $templates;
     public $selectedTemplateId;
+    public $templateTitle='';
 
 
     protected $listeners = ['refresh-templates' => 'refresh'];
 
-    public function refresh($menuTemplateId)
+    public function refresh()
     {
         $this->templates = MenuTemplate::where('user_id', Auth::id())->get();
-        $this->selectedTemplateId = $menuTemplateId;
     }
 
 
@@ -34,4 +34,19 @@ class WeeklyPlannerTemplate extends Component
         $this->templates = MenuTemplate::where('user_id', Auth::user()->id)->get();
         $this->selectedTemplateId = MenuTemplate::where('user_id', Auth::user()->id)->first()->id;
     }
+
+    public function saveTitle()
+    {
+        $template = MenuTemplate::find($this->selectedTemplateId);
+        $template->title = $this->templateTitle;
+        $template->save();
+        $this->templates = MenuTemplate::where('user_id', Auth::user()->id)->first()->id; // Refresh templates
+    }
+
+    public function startEditTitle()
+    {
+        $this->templateTitle = $this->templates->find($this->selectedTemplateId)->title;
+    }
+
+    public function deleteTemplate()
 }

@@ -23,6 +23,10 @@ Route::view('templates', 'templates')
     ->middleware(['auth', 'verified'])
     ->name('templates');
 
+Route::view('recipes', 'recipes')
+    ->middleware(['auth', 'verified'])
+    ->name('recipes');
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');

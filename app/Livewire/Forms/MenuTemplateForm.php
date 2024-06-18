@@ -28,12 +28,11 @@ class MenuTemplateForm extends Form
 
         $data = $this->only(['user_id', 'title']);
 
-        $menuTemplate = $this->menuTemplate
+        $this->menuTemplate
             ? tap($this->menuTemplate)->update($data)
             : MenuTemplate::create($data);
 
         $this->reset();
-        return $menuTemplate->id;
     }
 
     public function rules()
