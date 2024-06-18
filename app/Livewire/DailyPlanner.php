@@ -20,7 +20,7 @@ class DailyPlanner extends Component
     public $recipes;
     public $modalSearch;
 
-    protected $listeners = ['refreshComponent' => '$refresh'];
+    protected $listeners = ['refreshComponent' => '$refresh', 'refresh-menu-items' => 'refresh'];
 
     public function mount($date)
     {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
+<html lang="{{ str_replace(" _", "-" , app()->getLocale()) }}">
 
 <head>
 	<meta charset="utf-8">
@@ -14,7 +14,7 @@
 
 	<!-- Scripts -->
 	@vite(["resources/css/app.css", "resources/js/app.js"])
-	<script src="{{ asset("js/lang.js") }}" defer></script>
+	<script src="{{ asset(" js/lang.js") }}" defer></script>
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
 	<!-- Styles -->
@@ -42,7 +42,8 @@
 	@livewire("wire-elements-modal")
 	@livewireScripts
 	{{-- <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.2x/dist/livewire-sortable.js"></script> --}}
-
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<x-livewire-alert::scripts />
 
 </body>
 
