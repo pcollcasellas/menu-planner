@@ -3,14 +3,14 @@
         @if(count($templates) > 0)
         <div x-data="{ isEditing: false }" class="relative">
             <div x-show="!isEditing" class="flex-col items-center">
-                <select wire:model.live="selectedTemplateId" class="select rounded max-w-xs mb-2">
+                <select wire:model.live="selectedTemplateId" class="select mb-2 max-w-xs rounded">
                     @foreach($templates as $template)
                     <option value="{{ $template->id }}">{{ $template->title }}</option>
                     @endforeach
                 </select>
                 <section class="flex items-center">
                     <div wire:click='startEditTitle' @click="isEditing = true"
-                        class="flex text-xs cursor-pointer items-center mr-2">
+                        class="mr-2 flex cursor-pointer items-center text-xs">
                         <span class="mr-2">{{ __("Edit title") }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="h-5 w-5">
@@ -30,11 +30,13 @@
                     </div>
                 </section>
             </div>
-            <div x-show="isEditing" x-cloak>
-                <input type="text" wire:model="templateTitle" class="input rounded max-w-xs">
-                <x-primary-button class="button" wire:click="saveTitle" @click="isEditing = false">Save
-                </x-primary-button>
-                <button class="button" @click="isEditing = false">Cancel</button>
+            <div x-show="isEditing" class="flex-col" x-cloak>
+                <input type="text" wire:model="templateTitle" class="input mb-2 max-w-xs rounded">
+                <div class="flex gap-2">
+                    <x-primary-button class="button" wire:click="saveTitle" @click="isEditing = false">Save
+                    </x-primary-button>
+                    <button class="button" @click="isEditing = false">Cancel</button>
+                </div>
             </div>
         </div>
         @endif

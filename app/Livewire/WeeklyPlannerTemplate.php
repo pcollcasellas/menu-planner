@@ -40,7 +40,8 @@ class WeeklyPlannerTemplate extends Component
         $template = MenuTemplate::find($this->selectedTemplateId);
         $template->title = $this->templateTitle;
         $template->save();
-        $this->templates = MenuTemplate::where('user_id', Auth::user()->id)->first()->id; // Refresh templates
+        $this->templates = MenuTemplate::where('user_id', Auth::user()->id)->get();
+        $this->selectedTemplateId = $template->id;
     }
 
     public function startEditTitle()
