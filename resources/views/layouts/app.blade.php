@@ -37,6 +37,18 @@
 		<!-- Page Content -->
 		<main>
 			{{ $slot }}
+			<script>
+				document.addEventListener('livewire:init', () => {
+				  Livewire.on('log', (event) => {
+					try{
+					  console[event[0].level](event[0].obj);
+					}
+					catch{
+					  console.log(event[0]);
+					}
+				  });
+				});
+			</script>
 		</main>
 	</div>
 	@livewire("wire-elements-modal")
