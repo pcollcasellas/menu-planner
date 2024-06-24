@@ -20,6 +20,7 @@ class WeeklyPlannerTemplate extends Component
     public function refresh()
     {
         $this->templates = MenuTemplate::where('user_id', Auth::id())->get();
+        $this->selectedTemplateId = MenuTemplate::where('user_id', Auth::user()->id)->exists() ? MenuTemplate::where('user_id', Auth::user()->id)->first()->id : null;
     }
 
 
@@ -32,7 +33,7 @@ class WeeklyPlannerTemplate extends Component
     public function mount()
     {
         $this->templates = MenuTemplate::where('user_id', Auth::user()->id)->get();
-        $this->selectedTemplateId = MenuTemplate::where('user_id', Auth::user()->id)->first()->id;
+        $this->selectedTemplateId = MenuTemplate::where('user_id', Auth::user()->id)->exists() ? MenuTemplate::where('user_id', Auth::user()->id)->first()->id : null;
     }
 
     public function saveTitle()
@@ -49,11 +50,10 @@ class WeeklyPlannerTemplate extends Component
         $this->templateTitle = $this->templates->find($this->selectedTemplateId)->title;
     }
 
-    public function deleteTemplate  ()
+    public function deleteTemplate()
     {
         $template = MenuTemplate::find($this->selectedTemplateId);
         $template->delete();
-        $this->templates = MenuTemplate::where('user_id', Auth::user()->id)->get();
-        $this->selectedTemplateId = MenuTemplate::where('user_id', Auth::user()->id)->first()->id;
+        $this->refresh();
     }
 }

@@ -33,9 +33,9 @@
             <div x-show="isEditing" class="flex-col" x-cloak>
                 <input type="text" wire:model="templateTitle" class="input mb-2 max-w-xs rounded">
                 <div class="flex gap-2">
-                    <x-primary-button class="button" wire:click="saveTitle" @click="isEditing = false">Save
+                    <x-primary-button class="button" wire:click="saveTitle" @click="isEditing = false">{{__("Save")}}
                     </x-primary-button>
-                    <button class="button" @click="isEditing = false">Cancel</button>
+                    <button class="button" @click="isEditing = false">{{__("Cancel")}}</button>
                 </div>
             </div>
         </div>

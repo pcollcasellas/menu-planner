@@ -13,15 +13,15 @@
 
 	<div class="flex justify-between p-2">
 		<x-primary-button wire:click="shuffleDays" class="rounded bg-blue-500 px-4 text-white">
-			Shuffle
+			{{ __("Shuffle") }}
 		</x-primary-button>
 		@if ($shuffled)
 		<div class="flex items-center gap-2">
 			<x-secondary-button wire:click="saveShuffleChanges">
-				Save
+				{{ __('Save') }}
 			</x-secondary-button>
 			<span wire:click="reverseShuffleChanges" class="cursor-pointer rounded px-4 text-sm text-red-500">
-				Discard Changes
+				{{ __("Discard Changes") }}
 			</span>
 		</div>
 		@endif

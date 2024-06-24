@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('menu_template_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_template_id');
-            $table->foreignId('recipe_id');
+            $table->foreignId('menu_template_id')->constrained('menu_templates')->onDelete('cascade');
+            $table->foreignId('recipe_id')->constrained('recipes')->onDelete('cascade');
             $table->enum('meal', ['Breakfast', 'Lunch', 'Dinner']);
             $table->enum('day', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
             $table->integer('order');
