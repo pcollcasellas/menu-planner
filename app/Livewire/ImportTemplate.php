@@ -13,7 +13,7 @@ use Livewire\Component;
 class ImportTemplate extends Component
 {
     use LivewireAlert;
-    
+
     public $weekStartDate;
     public $showModal;
     public $modalSearch;
@@ -24,7 +24,7 @@ class ImportTemplate extends Component
         $this->templates = MenuTemplate::where('user_id', Auth::id())->get();
         $this->weekStartDate = Carbon::parse($weekStartDate);
     }
-    
+
     public function render()
     {
         return view('livewire.import-template');
