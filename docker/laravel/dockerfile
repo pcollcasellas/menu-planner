@@ -1,0 +1,38 @@
+# Use the official PHP image with necessary extensions
+FROM php:8.3-fpm-alpine
+
+# Install system dependencies
+RUN apk update && apk add --no-cache \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    libwebp-dev \
+    libxpm-dev \
+    libzip-dev \
+    bash \
+    git \
+    libxml2-dev \
+    oniguruma-dev \
+    postgresql-dev \
+    curl
+
+# Install PHP extensions
+RUN docker-php-ext-configure zip
+RUN docker-php-ext-install zip pdo pdo_mysql mbstring exif pcntl bcmath
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set the working directory inside the container
+WORKDIR /var/www
+
+# Copy the Laravel application code into the container
+COPY . .
+
+# Install Laravel dependencies via Composer
+RUN composer install
+
+# Expose port 9000 for PHP-FPM
+EXPOSE 9000
+
+# Start the PHP-FPM process
+CMD ["php-fpm"]
