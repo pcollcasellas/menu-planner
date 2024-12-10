@@ -1,7 +1,7 @@
 services:
   app:
-    image: image-name
-    container_name: container-name
+    image: menu-image
+    container_name: menu-planner
     environment:
       - APP_NAME=${APP_NAME}
       - APP_ENV=${APP_ENV}
