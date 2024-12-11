@@ -4,6 +4,9 @@ services:
   app:
     image: menu-image
     container_name: menu-planner
+    build:
+      context: .
+      dockerfile: './Dockerfile'
     environment:
       - APP_NAME=${APP_NAME}
       - APP_ENV=${APP_ENV}
@@ -20,10 +23,7 @@ services:
       - '81:80'
     volumes:
       - ./:/var/www/service
-    build:
-      context: .
-      dockerfile: './Dockerfile'
-      networks:
+    networks:
       - mynetwork
 
 networks:
