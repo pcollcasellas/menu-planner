@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   app:
     image: menu-image
@@ -21,7 +23,6 @@ services:
     build:
       context: .
       dockerfile: './Dockerfile'
-      version: '3.8'
       networks:
       - mynetwork
 
