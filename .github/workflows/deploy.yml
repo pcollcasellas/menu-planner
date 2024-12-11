@@ -1,0 +1,25 @@
+name: Deploy to Raspberry Pi
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Pull and Deploy Docker Containers
+        run: |
+          cd ~/docker/menu-planner
+          git pull origin main
+          docker-compose down
+          docker-compose up -d --build
+
+      - name: Run Database Migrations
+        run: |
+          docker exec menu-planner php artisan migrate --force
