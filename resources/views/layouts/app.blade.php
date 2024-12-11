@@ -18,6 +18,7 @@
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v3.x.x/dist/alpine.min.js"></script>
 
 	<!-- Styles -->
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
 	@livewireStyles
 </head>
 
@@ -28,7 +29,7 @@
 		<!-- Page Heading -->
 		@if (isset($header))
 		<header class="bg-white shadow">
-			<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+			<div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
 				{{ $header }}
 			</div>
 		</header>
