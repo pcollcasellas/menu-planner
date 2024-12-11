@@ -22,26 +22,7 @@ services:
       context: .
       dockerfile: './Dockerfile'
       version: '3.8'
-
-services:
-  app:
-    image: menu-image
-    container_name: menu-planner
-    environment:
-      - DB_CONNECTION=${DB_CONNECTION}
-      - DB_HOST=${DB_HOST}  # We'll use the container name of MySQL
-      - DB_PORT=${DB_PORT}
-      - DB_DATABASE=${DB_DATABASE}
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-    ports:
-      - "81:80"
-    volumes:
-      - ./:/var/www/service
-    build:
-      context: .
-      dockerfile: './Dockerfile'
-    networks:
+      networks:
       - mynetwork
 
 networks:
