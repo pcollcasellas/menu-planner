@@ -15,7 +15,7 @@
 	<!-- Scripts -->
 	@vite(["resources/css/app.css", "resources/js/app.js"])
 	<script src="{{ asset(" js/lang.js") }}" defer></script>
-	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v3.x.x/dist/alpine.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v3.x.x/dist/alpine.min.js"></script>
 
 	<!-- Styles -->
     <link rel="icon" href="{{ asset('favicon.ico') }}">
