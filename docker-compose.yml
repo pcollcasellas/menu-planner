@@ -24,8 +24,8 @@ services:
     volumes:
       - ./:/var/www/service
     networks:
-      - mynetwork
+      - app-network
 
 networks:
-  mynetwork:
-    driver: bridge
+  app-network:
+    external: true

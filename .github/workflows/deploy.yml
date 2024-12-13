@@ -17,8 +17,8 @@ jobs:
         run: |
           cd ~/docker/menu-planner
           git pull origin main
-          docker-compose down
-          docker-compose up -d --build
+          docker compose down
+          docker compose up -d --build
 
       - name: Run Database Migrations
         run: |
