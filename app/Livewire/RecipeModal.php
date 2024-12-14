@@ -10,6 +10,9 @@ class RecipeModal extends ModalComponent
     public ?Recipe $recipe = null;
     public Forms\RecipeForm $form;
 
+    public array $ingredients = [['name' => '', 'quantity' => '']];
+
+
     public function mount(Recipe $recipe = null): void
     {
         if ($recipe && $recipe->exists) {
@@ -20,6 +23,19 @@ class RecipeModal extends ModalComponent
     public function render()
     {
         return view('livewire.recipe-modal');
+    }
+
+    public function addIngredient()
+    {
+        $this->ingredients[] = ['name' => '', 'quantity' => ''];
+    }
+
+    public function removeIngredient($index)
+    {
+        // Remove ingredient by index
+        unset($this->ingredients[$index]);
+        // Re-index array to prevent gaps
+        $this->ingredients = array_values($this->ingredients);
     }
 
     public function save()
