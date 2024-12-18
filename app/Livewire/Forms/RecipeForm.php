@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Ingredient;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
@@ -31,16 +32,27 @@ class RecipeForm extends Form
 
     public function save()
     {
-        // dd($this);
         $this->user_id = Auth::user()->id;
         $this->validate();
 
         if (!$this->recipe) {
-            Recipe::create($this->only(['user_id', 'name', 'description', 'prep_time', 'cooking_time']));
+            $this->recipe = Recipe::create($this->only(['user_id', 'name', 'description', 'prep_time', 'cooking_time']));
         } else {
             $this->recipe->update($this->only(['user_id', 'name', 'description', 'prep_time', 'cooking_time']));
         }
-        $this->reset();
+        foreach ($this->ingredients as $ingredientData) {
+            // Step 3: Check if ingredient exists, if not, create it
+            $ingredient = Ingredient::firstOrCreate(
+                ['name' => $ingredientData['name']], // Search by the 'name' of the ingredient
+                ['name' => $ingredientData['name']]  // Create with 'name' if not found
+            );
+
+            // Step 4: Prepare the pivot data (ingredient ID and quantity)
+            $ingredientsData[$ingredient->id] = [
+                'quantity' => $ingredientData['quantity']
+            ];
+        }
+        $this->recipe->ingredients()->sync($ingredientsData);
     }
 
     public function rules()
