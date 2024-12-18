@@ -16,7 +16,9 @@ jobs:
       - name: Pull and Deploy Docker Containers
         run: |
           cd ~/docker/menu-planner
-          git pull origin main
+          git fetch
+          git reset --hard HEAD
+          git merge origin/main
           docker compose down
           docker compose up -d --build
 
