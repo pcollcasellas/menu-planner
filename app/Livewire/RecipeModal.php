@@ -10,13 +10,23 @@ class RecipeModal extends ModalComponent
     public ?Recipe $recipe = null;
     public Forms\RecipeForm $form;
 
-    public array $ingredients = [['name' => '', 'quantity' => '']];
-
-
     public function mount(Recipe $recipe = null): void
     {
         if ($recipe && $recipe->exists) {
+            $ingredients = $recipe->ingredients;
+
+            // Create an array to store the desired format
+            $ingredientsArray = $ingredients->map(function ($ingredient) {
+                return [
+                    'name' => $ingredient->name,
+                    'quantity' => $ingredient->pivot->quantity,
+                ];
+            })->toArray();
+
+            $this->form->ingredients = $ingredientsArray;
             $this->form->setRecipe($recipe);
+        } else {
+            $this->form->ingredients = [['name' => '', 'quantity' => '']];
         }
     }
 
@@ -27,15 +37,14 @@ class RecipeModal extends ModalComponent
 
     public function addIngredient()
     {
-        $this->ingredients[] = ['name' => '', 'quantity' => ''];
+        $this->form->ingredients[] = ['name' => '', 'quantity' => ''];
     }
 
     public function removeIngredient($index)
     {
-        // Remove ingredient by index
-        unset($this->ingredients[$index]);
+        unset($this->form->ingredients[$index]);
         // Re-index array to prevent gaps
-        $this->ingredients = array_values($this->ingredients);
+        $this->form->ingredients = array_values($this->form->ingredients);
     }
 
     public function save()

@@ -37,13 +37,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ingredients as $index => $ingredient)
+                        @foreach ($form->ingredients as $index => $ingredient)
                             <tr class="even:bg-black/5 dark:even:bg-white/10">
                                 <td class="p-1">
-				                    <x-text-input-underline type="text" id="ingredient_name" wire:model="ingredients.{{ $index }}.name" />
+				                    <x-text-input-underline type="text" id="ingredient_name" wire:model="form.ingredients.{{ $index }}.name" />
                                 </td>
                                 <td class="p-1">
-				                    <x-text-input-underline type="text" id="ingredient_quantity" wire:model="ingredients.{{ $index }}.quantity" />
+				                    <x-text-input-underline type="text" id="ingredient_quantity" wire:model="form.ingredients.{{ $index }}.quantity" />
                                 </td>
                                 <td class="p-1">
                                     <x-delete-icon wire:click="removeIngredient({{ $index }})" />
@@ -63,61 +63,6 @@
                     </tbody>
                 </table>
             </div>
-
-
-            {{-- <table class="w-full border border-collapse border-gray-300 table-auto">
-                <thead>
-                    <tr>
-                        <th class="px-4 py-2 text-left border border-gray-300">Name</th>
-                        <th class="px-4 py-2 text-left border border-gray-300">Quantity</th>
-                        <th class="px-4 py-2 text-left border border-gray-300">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($ingredients as $index => $ingredient)
-                        <tr>
-                            <td class="px-4 py-2 border border-gray-300">
-                                <input
-                                    type="text"
-                                    wire:model="ingredients.{{ $index }}.name"
-                                    class="w-full px-3 py-1 border rounded"
-                                    placeholder="Ingredient Name"
-                                />
-                            </td>
-                            <td class="px-4 py-2 border border-gray-300">
-                                <input
-                                    type="text"
-                                    wire:model="ingredients.{{ $index }}.quantity"
-                                    class="w-full px-3 py-1 border rounded"
-                                    placeholder="Quantity"
-                                />
-                            </td>
-                            <td class="px-4 py-2 text-center border border-gray-300">
-                                @if ($index > 0)
-                                    <button
-                                        type="button"
-                                        wire:click="removeIngredient({{ $index }})"
-                                        class="text-red-500 hover:underline">
-                                        Remove
-                                    </button>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-
-                    {{-- Add New Ingredient Button Row
-                    <tr>
-                        <td colspan="3" class="py-2 text-center">
-                            <button
-                                type="button"
-                                wire:click="addIngredient"
-                                class="px-3 py-1 text-white bg-green-500 rounded hover:bg-green-700">
-                                Add Ingredient
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table> --}}
         </div>
 
 		<div class="flex justify-end">

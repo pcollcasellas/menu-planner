@@ -16,10 +16,12 @@ class RecipeForm extends Form
     public $user_id;
     public $prep_time;
     public $cooking_time;
+    public $ingredients = [];
 
     public function setRecipe(?Recipe $recipe = null)
     {
         $this->recipe = $recipe;
+
         $this->name = $recipe->name;
         $this->description = $recipe->description;
         $this->user_id = $recipe->user_id;
@@ -29,6 +31,7 @@ class RecipeForm extends Form
 
     public function save()
     {
+        // dd($this);
         $this->user_id = Auth::user()->id;
         $this->validate();
 
