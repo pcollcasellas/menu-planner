@@ -44,15 +44,18 @@ class RecipeForm extends Form
                 $this->recipe->update($this->only(['user_id', 'name', 'description', 'prep_time', 'cooking_time']));
             }
             foreach ($this->ingredients as $ingredientData) {
+                $ingredientName = strtolower($ingredientData['name']);
+                $quantity = strtolower($ingredientData['quantity']); // Assuming quantity is stored as a string
+
                 // Step 3: Check if ingredient exists, if not, create it
                 $ingredient = Ingredient::firstOrCreate(
-                    ['name' => $ingredientData['name']], // Search by the 'name' of the ingredient
-                    ['name' => $ingredientData['name']]  // Create with 'name' if not found
+                    ['name' => $ingredientName], // Search by the 'name' of the ingredient
+                    ['name' => $ingredientName]  // Create with 'name' if not found
                 );
 
                 // Step 4: Prepare the pivot data (ingredient ID and quantity)
                 $ingredientsData[$ingredient->id] = [
-                    'quantity' => $ingredientData['quantity']
+                    'quantity' => $quantity
                 ];
             }
             $this->recipe->ingredients()->sync($ingredientsData);
