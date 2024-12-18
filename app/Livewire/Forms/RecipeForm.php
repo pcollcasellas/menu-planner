@@ -66,7 +66,6 @@ class RecipeForm extends Form
     {
         return [
             'name' => ['required'],
-            'description' => ['required'],
         ];
     }
 }

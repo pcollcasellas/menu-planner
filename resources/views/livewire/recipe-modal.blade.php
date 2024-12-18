@@ -7,13 +7,13 @@
 
 		<div class="mb-4">
 			<x-input-label for="description">Recipe description</x-input-label>
-			<x-textarea type="text" id="description" required wire:model="form.description" />
+			<x-textarea type="text" id="description" wire:model="form.description" />
 		</div>
 
 		<div class="flex mb-4">
 			<div class="flex-1">
 				<x-input-label for="prep_time">Recipe preparation time</x-input-label>
-				<x-text-input type="number" id="prep_time" required wire:model="form.prep_time" />
+				<x-text-input type="number" id="prep_time" wire:model="form.prep_time" />
 			</div>
 
 			<div class="flex-1">
