@@ -18,7 +18,7 @@ services:
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
     ports:
-      - '81:80'
+      - '40:80'
     volumes:
       - ./:/var/www/service
     networks:
